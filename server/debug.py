@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from app import app
-from models import CrewMember, Production, db
+from models import Project, db
 
 if __name__ == "__main__":
     import ipdb
