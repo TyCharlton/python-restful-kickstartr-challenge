@@ -1,7 +1,9 @@
 from app import app
 from models import Project, db
+from faker import Faker
 
-with app.app_context():
+with app.appcontext():
+
     print("Clearing previous data...")
 
     Project.query.delete()
@@ -10,5 +12,14 @@ with app.app_context():
 
     projects = []
 
+    fake = Faker()
+
     for _ in range(10):
-        pass
+        project = Project(
+            title=fake.job(),
+            creator=fake.name()
+        )
+        projects.append(project)
+
+    db.session.add_all(projects)
+    db.session.commit()
